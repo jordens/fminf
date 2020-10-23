@@ -10,9 +10,13 @@ use panic_halt as _; // you can put a breakpoint on `rust_begin_unwind` to catch
 use cortex_m::asm;
 use cortex_m_rt::entry;
 
+extern crate compiler_builtins;
+
 #[entry]
 fn main() -> ! {
     asm::nop(); // To not have main optimize to abort in release mode, remove when you add code
+
+    0f32.min(0f32);
 
     loop {
         // your code goes here
